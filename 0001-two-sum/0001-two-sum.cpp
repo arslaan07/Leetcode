@@ -10,9 +10,9 @@ public:
                 ans.push_back(mpp[more]);
                 ans.push_back(i);
             }
-            else{
+            
                 mpp[a]=i;
-            }
+            
              
         }
         return ans;
