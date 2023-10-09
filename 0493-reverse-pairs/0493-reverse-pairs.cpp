@@ -1,23 +1,27 @@
 class Solution {
 public:
+    void countPairs(vector<int> &arr, int low, int mid, int high,int& count){
+        int left = low;      // starting index of left half of arr
+        int right = mid + 1;
+        while(left<=mid && right<=high){
+        if(arr[left]>(long long)arr[right]<<1){
+            count=count+(mid-left+1);
+            right++;
+        }
+        else{
+            left++;
+        }        
+        }
+    }
     void merge(vector<int> &arr, int low, int mid, int high,int& count) {
     vector<int> temp; // temporary array
     int left = low;      // starting index of left half of arr
     int right = mid + 1;   // starting index of right half of arr
 
+    countPairs(arr,low,mid,high,count);
     //storing elements in the temporary array in a sorted manner//
-    int newLeft=left;
-    int newRight=mid+1;
-    while(newLeft<=mid && newRight<=high){
-        if(arr[newLeft]>(long long)arr[newRight]<<1){
-            count=count+(mid-newLeft+1);
-            newRight++;
-        }
-        else{
-            newLeft++;
-        }
-                
-    }
+
+    
     while (left <= mid && right <= high) {
         if (arr[left] < arr[right]) {
             temp.push_back(arr[left]);
