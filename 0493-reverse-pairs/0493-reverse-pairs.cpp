@@ -9,7 +9,7 @@ public:
     int newLeft=left;
     int newRight=mid+1;
     while(newLeft<=mid && newRight<=high){
-        if((long long)arr[newLeft]>(long long)2*arr[newRight]){
+        if(arr[newLeft]>(long long)2*arr[newRight]){
             count=count+(mid-newLeft+1);
             newRight++;
         }
