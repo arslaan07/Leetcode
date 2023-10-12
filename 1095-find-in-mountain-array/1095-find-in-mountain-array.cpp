@@ -11,8 +11,8 @@
 class Solution {
 public:
     int findPeakIndex(int target, MountainArray &arr,int n){
-        int low=0;
-        int high=n-1;
+        int low=1;
+        int high=n-2;
         while(low<high){
             int mid=low+(high-low)/2;
             if(arr.get(mid)<arr.get(mid+1)){
