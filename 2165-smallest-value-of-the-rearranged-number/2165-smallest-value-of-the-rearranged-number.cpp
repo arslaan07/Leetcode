@@ -7,7 +7,6 @@ public:
     sort(s.begin(), s.end());
     else
     sort(s.begin(), s.end(),greater<int>());
-    
     if(s[0]=='0'){
         int j;
     for(j=1;j<s.size();j++){
@@ -18,7 +17,6 @@ public:
     }   
     }
     long long result=stoll(s);
-    
     return num<0? -1LL*result : result;
     }
 };
