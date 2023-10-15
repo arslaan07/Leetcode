@@ -22,15 +22,9 @@ public:
         for(int i=0;i<str.size();i++){
             if((str[i]-'0')%2==1)
                 ans[i]=odd[j++];
-                   
             else
-                ans[i]=even[k++];
-                
-            
-        }
-        
-        
-        
+                ans[i]=even[k++];   
+        }   
         int result=stoi(ans);
         return result;
         
