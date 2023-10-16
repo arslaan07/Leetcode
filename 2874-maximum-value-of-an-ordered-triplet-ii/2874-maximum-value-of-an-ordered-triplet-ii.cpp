@@ -1,26 +1,21 @@
 class Solution {
 public:
     long long maximumTripletValue(vector<int>& nums) {
-        int n=nums.size();
-        // vector<long long> li(n,0);
-        vector<long long> ri(n,0);
-        // li[1]=nums[0];
-        ri[n-2]=nums[n-1];
-        // for(int i=2;i<n;i++){
-        //     li[i]=max(li[i-1],(long long)nums[i-1]);
-        // }
-         for(int i=n-3;i>=0;i--){
-            ri[i]=max(ri[i+1],(long long)nums[i+1]);
+        long long n=nums.size();
+        int l;
+        l=nums[0];
+        int r[n];
+        r[n-1]=0;
+        for(int i=n-2;i>=0;i--){
+            r[i]=max(r[i+1],nums[i+1]);
         }
-        long long li;
-        li=nums[0];
-        long long maxVal=LLONG_MIN;
+        long long val=0;
+        long long maxVal=0;
         for(int j=1;j<=n-2;j++){
-            li=max(li,(long long)nums[j]);
-            if((li-nums[j])*ri[j] > maxVal){
-            maxVal=(li-nums[j])*ri[j];
-            }
+            l=max(l,nums[j]);
+            val=(long long)(l-nums[j])*(long long)r[j];
+            maxVal=max((long long)maxVal,(long long)val);
         }
-        return maxVal>0 ? maxVal:0;
+        return maxVal;
     }
 };
