@@ -1,33 +1,49 @@
 class Solution {
 public:
     bool backspaceCompare(string s, string t) {
-        string s1;
-        string t1;
-        stack<char> st;
-        for(int i=0;s[i]!='\0';i++){
-            if(s[i]=='#' && !st.empty()){
-                st.pop();
+        int i=s.size()-1;
+        int j=t.size()-1;
+        while(i>=0 || j>=0){
+            int skipS=0;
+            while(i>=0){
+                if(s[i]=='#'){
+                    skipS++;
+                    i--;
+                }
+                else if(skipS>0){
+                    skipS--;
+                    i--;
+                }
+                else{
+                    break;
+                }
             }
-            else if(s[i]!='#'){
-                st.push(s[i]);
+            int skipT=0;
+            while(j>=0){
+                if(t[j]=='#'){
+                    skipT++;
+                    j--;
+                }
+                else if(skipT>0){
+                    skipT--;
+                    j--;
+                }
+                else{
+                    break;
+                }
             }
+            cout<<i<<" "<<j;
+            char first  = i < 0 ? '$' : s[i];
+            char second = j < 0 ? '$' : t[j];
+            
+            if(first != second)
+                return false;
+            
+            i--;
+            j--;
+
+            
         }
-        while(!st.empty()){
-            s1.push_back(st.top());
-            st.pop();
-        }
-        for(int i=0;t[i]!='\0';i++){
-            if(t[i]=='#' && !st.empty()){
-                st.pop();
-            }
-            else if(t[i]!='#'){
-                st.push(t[i]);
-            }
-        }
-        while(!st.empty()){
-            t1.push_back(st.top());
-            st.pop();
-        }
-        return s1==t1;
+         return true;
     }
 };
