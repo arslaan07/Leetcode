@@ -11,10 +11,8 @@ public:
             }
         }
         sort(a.begin(), a.end());
-        int j=0;
         for(int i=0; i<idx.size(); i++){
-            s[idx[i]] = a[j];
-            j++;
+            s[idx[i]] = a[i];
         }
         return s;
     }
