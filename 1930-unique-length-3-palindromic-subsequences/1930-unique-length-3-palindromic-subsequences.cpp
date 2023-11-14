@@ -2,7 +2,7 @@ class Solution {
 public:
     int countPalindromicSubsequence(string s) {
         int n = s.size();
-        map<char,int> mpp1;
+        map<char,int> mpp1;   
         map<char,int> mpp2;
         for(int i=0; i<n; i++) {
             mpp1[s[i]]++;
