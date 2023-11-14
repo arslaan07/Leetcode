@@ -6,8 +6,6 @@ public:
         map<char,int> mpp2;
         for(int i=0; i<n; i++) {
             mpp1[s[i]]++;
-        }
-        for(int i=0; i<n; i++) {
             mpp2[s[i]] = i;
         }
         int ans = 0;
