@@ -23,7 +23,7 @@ public:
                 if(sum==target){
                     vector<int> temp={a[i],a[j],a[k],a[l]};
                     ans.push_back(temp);
-                     k++;
+                    k++;   //very important to put these two lines before while loop
                     l--;
                 while(k<l && a[l]==a[l+1]){
                     l--;
