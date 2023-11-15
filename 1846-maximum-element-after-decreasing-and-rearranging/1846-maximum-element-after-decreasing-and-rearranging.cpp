@@ -2,8 +2,8 @@ class Solution {
 public:
     int maximumElementAfterDecrementingAndRearranging(vector<int>& nums) {
         int n = nums.size();
-        sort(nums.begin(), nums.end());
         if(nums[0] != 1) {
+            sort(nums.begin(), nums.end());
             nums[0] = 1;
         }
         int maxNum = 1;
