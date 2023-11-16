@@ -10,13 +10,22 @@ public:
                 return true;
             }
             if(nums[start] == nums[m] && nums[m] == nums[end]) {
-                for(int i=start; i<=end; i++) {
-                    if(target == nums[i]){
+                int i = start;
+                int j = end;
+                while(i != m && j != m) {
+                    if(nums[i] == target || nums[j] ==target){
                         return true;
                     }
+                    i++;
+                    j--;
                 }
-                return false;
-                
+                while(j != m) {
+                     if(nums[j] ==target){
+                        return true;
+                    }
+                    j--;
+                }
+            return false;     
             }
             else if(nums[start] <= nums[m]) {
                 if(target >= nums[start] && target <= nums[m]) {
