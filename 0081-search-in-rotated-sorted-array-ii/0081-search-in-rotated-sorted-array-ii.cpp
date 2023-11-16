@@ -19,13 +19,11 @@ public:
                     i++;
                     j--;
                 }
-                while(j != m) {
-                     if(nums[j] ==target){
-                        return true;
-                    }
-                    j--;
+                if(j != m && nums[j] ==target) {
+                    return true;
                 }
-            return false;     
+                    
+             return false;     
             }
             else if(nums[start] <= nums[m]) {
                 if(target >= nums[start] && target <= nums[m]) {
