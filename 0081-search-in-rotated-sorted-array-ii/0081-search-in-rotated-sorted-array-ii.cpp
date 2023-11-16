@@ -10,20 +10,8 @@ public:
                 return true;
             }
             if(nums[start] == nums[m] && nums[m] == nums[end]) {
-                int i = start;
-                int j = end;
-                while(i != m && j != m) {
-                    if(nums[i] == target || nums[j] ==target){
-                        return true;
-                    }
-                    i++;
-                    j--;
-                }
-                if(j != m && nums[j] ==target) { //j aur m ki distance mei sirf 1 ka frq hoga
-                    return true;                 //at maximum, no need to check i because i
-                }                            //is always close to m wo pehle hi pohnchega
-                    
-             return false;     
+                start++;
+                end--;
             }
             else if(nums[start] <= nums[m]) {
                 if(target >= nums[start] && target <= nums[m]) {
