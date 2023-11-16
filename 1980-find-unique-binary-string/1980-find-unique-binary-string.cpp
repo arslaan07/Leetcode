@@ -5,13 +5,7 @@ public:
         int i = 0;
         for(string num : nums) {
             char ch = num[i++];
-            if(ch == '0'){
-                ans += '1';
-            }
-            else{
-                ans += '0';
-            }
-            
+            ans += ch == '0' ? '1' : '0';    
         }
         return ans;
     }
