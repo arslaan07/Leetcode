@@ -19,9 +19,9 @@ public:
                     i++;
                     j--;
                 }
-                if(j != m && nums[j] ==target) {
-                    return true;
-                }
+                if(j != m && nums[j] ==target) { //j aur m ki distance mei sirf 1 ka frq hoga
+                    return true;                 //at maximum, no need to check i because i
+                }                            //is always close to m wo pehle hi pohnchega
                     
              return false;     
             }
