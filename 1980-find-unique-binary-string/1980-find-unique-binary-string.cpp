@@ -6,17 +6,17 @@ public:
         vector<int> hash(maxLimit, 0);
         for(int i=0; i<n; i++) {
             string a = nums[i];
-            bitset<32> bits(a);
+            bitset<16> bits(a);
             int result = bits.to_ulong();
             hash[result]++;
         }
         string ans = "";
         for(int i=0; i<maxLimit; i++) {
             if(hash[i] == 0) {
-                ans = bitset<32>(i).to_string();
+                ans = bitset<16>(i).to_string();
                 break;
             }
         }
-        return ans.substr(32-n, n);
+        return ans.substr(16-n, n);
     }
 };
