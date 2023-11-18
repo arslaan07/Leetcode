@@ -3,10 +3,7 @@ public:
     bool canEatBananas(vector<int>& piles, int h, int speed) {
         long long hoursRequired = 0;
         for(int i=0; i<piles.size(); i++) {
-            // int canEatPerHour = ceil((float) piles[i]/speed);
-            hoursRequired += ceil((double) piles[i]/speed);
-                // (piles[i] + speed - 1) / speed;
-            // hoursRequired += canEatPerHour;  
+            hoursRequired += ceil((double) piles[i]/speed);  
         }
         if(hoursRequired <= h) return true;
         return false;   
