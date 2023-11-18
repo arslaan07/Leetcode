@@ -4,7 +4,8 @@ public:
         long long hoursRequired = 0;
         for(int i=0; i<piles.size(); i++) {
             // int canEatPerHour = ceil((float) piles[i]/speed);
-            hoursRequired += (piles[i] + speed - 1) / speed;
+            hoursRequired += ceil((double) piles[i]/speed);
+                // (piles[i] + speed - 1) / speed;
             // hoursRequired += canEatPerHour;  
         }
         if(hoursRequired <= h) return true;
