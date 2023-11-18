@@ -12,7 +12,7 @@ public:
             while(r < n) {
                 sum += nums[r];
                 int windowSize = r - l + 1;
-                long long windowSum = (long long)windowSize * nums[r];
+                long long windowSum = (long long)windowSize * (long long)nums[r];
                 if(k >= windowSum - sum) {
                     count++;
                     maxCount = max(maxCount, count);
