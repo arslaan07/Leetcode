@@ -22,11 +22,11 @@ public:
     int minDays(vector<int>& bloomDay, int m, int k) {
         int n = bloomDay.size();
         if((long long)m * k > n) return -1;
-        long long start = INT_MAX;
-        long long end = INT_MIN;
+        int start = INT_MAX;
+        int end = INT_MIN;
         for(int i=0; i<n; i++) {
-            start = min(start, (long long)bloomDay[i]);
-            end = max(end, (long long)bloomDay[i]);
+            start = min(start, bloomDay[i]);
+            end = max(end, bloomDay[i]);
         }
         long long ans = -1;
         while(start <= end) {
