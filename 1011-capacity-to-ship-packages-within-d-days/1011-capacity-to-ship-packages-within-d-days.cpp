@@ -19,10 +19,11 @@ public:
     int shipWithinDays(vector<int>& weights, int days) {
         int n = weights.size();
         int start = INT_MIN;
+        int end = 0;
         for(int i=0; i<n; i++) {
             start = max(start, weights[i]);
+            end += weights[i];
         }
-        int end = INT_MAX;
         int ans;
         while(start <= end) {
             int m = start + (end - start >> 1);
