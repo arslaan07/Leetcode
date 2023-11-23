@@ -17,7 +17,7 @@ public:
                 continue;
             }
             int d = (last - first) / (temp.size() - 1);
-            set<int> hashset(temp.begin(), temp.end());
+            unordered_set<int> hashset(temp.begin(), temp.end());
             while(first < last) {
                 if(hashset.find(first) == hashset.end()) {
                     break;
