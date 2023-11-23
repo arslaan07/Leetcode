@@ -8,16 +8,17 @@ public:
             vector<int> temp(nums.begin()+s, nums.begin()+e+1);
             int first = INT_MAX;
             int last = INT_MIN;
+            unordered_set<int> hashset;
             for(auto num : temp) {
                 first = min(first,num);
                 last = max(last, num);
+                hashset.insert(num);
             }
-            if( (last - first) % (temp.size() - 1) != 0) {
+            if( (last - first) % (temp.size() - 1) != 0) {  //agar divisible nahi h to false return hoga
                 answer.push_back(0);
                 continue;
             }
             int d = (last - first) / (temp.size() - 1);
-            set<int> hashset(temp.begin(), temp.end());
             while(first < last) {
                 if(hashset.find(first) == hashset.end()) {
                     break;
