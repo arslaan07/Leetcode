@@ -8,7 +8,7 @@ public:
             vector<int> temp(nums.begin()+s, nums.begin()+e+1);
             int first = INT_MAX;
             int last = INT_MIN;
-            unordered_set<int> hashset;
+            set<int> hashset;
             for(auto num : temp) {
                 first = min(first,num);
                 last = max(last, num);
