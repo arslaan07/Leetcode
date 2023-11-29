@@ -1,9 +1,5 @@
 class Solution {
 public:
-    void reverseWords(string s, string& ans, int start, int end) {
-        ans += s.substr(end+1, start - end) + ' ';
-        return;
-    }
     string reverseWords(string s) {
         int n = s.size();
         string ans = "";
@@ -16,7 +12,7 @@ public:
                 while(end >= 0 && s[end] != ' ') {
                     end--;
                 }
-                reverseWords(s, ans, start, end);
+                ans += s.substr(end+1, start - end) + ' ';
                 i = end - 1;
             }
         }
