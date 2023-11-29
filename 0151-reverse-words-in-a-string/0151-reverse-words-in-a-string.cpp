@@ -20,7 +20,7 @@ public:
                 i = end - 1;
             }
         }
-        if(ans[(ans.size() - 1) == ' ']) ans.pop_back();
+        if(ans[(ans.size() - 1)] == ' ') ans.pop_back();
     return ans;
     }
 };
