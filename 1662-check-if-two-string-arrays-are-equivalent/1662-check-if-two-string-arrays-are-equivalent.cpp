@@ -1,24 +1,27 @@
 class Solution {
 public:
     bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
-        vector<char> w1;
-        vector<char> w2;
-        for(int i=0; i<word1.size(); i++) {
-            for(size_t ch=0; ch<word1[i].size(); ch++) {
-                w1.push_back(word1[i][ch]);
+        int word1Idx = 0;
+        int word2Idx = 0;
+        int idx1 = 0;
+        int idx2 = 0;
+        while(1) {
+            char a = word1[word1Idx][idx1];
+            char b = word2[word2Idx][idx2];
+            if(a != b) return false;
+            idx1++;
+            idx2++;
+            if(idx1 == word1[word1Idx].size()) {
+                idx1 = 0;
+                word1Idx++;
             }
-        }
-        for(int i=0; i<word2.size(); i++) {
-            for(size_t ch=0; ch<word2[i].size(); ch++) {
-                w2.push_back(word2[i][ch]);
+            if(idx2 == word2[word2Idx].size()) {
+                idx2 = 0;
+                word2Idx++;
             }
+            if(word1Idx == word1.size() && word2Idx == word2.size()) return true;
+            if(word1Idx == word1.size() || word2Idx == word2.size()) return false;
         }
-        if(w1.size() != w2.size()) return false;
-        int i=0;
-        while(i<w1.size()) {
-            if(w1[i] != w2[i]) return false;
-            i++;
-        }
-        return true;
+        return false;
     }
 };
