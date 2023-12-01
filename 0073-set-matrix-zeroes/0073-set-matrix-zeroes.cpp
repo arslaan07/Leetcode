@@ -1,48 +1,57 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        vector<int> row;
-        vector<int> col;
-        for(int i=0; i<matrix.size(); i++) {
-            bool flag = false;
-            for(int j=0; j<matrix[i].size(); j++) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int col = 1;
+        for(int i=0; i<n; i++) {
+            if(matrix[0][i] == 0) col = 0;
+        }
+        for(int i=0; i<m; i++) {
+            if(matrix[i][0] == 0) matrix[0][0] = 0;
+        }
+        for(int i=1; i<m; i++) {
+            for(int j=1; j<n; j++) {
                 if(matrix[i][j] == 0) {
-                    row.push_back(0);
-                    flag = true;
-                    break;
+                    matrix[i][0] = 0;
+                    // matrix[0][j] = 0;
                 }
             }
-            if(flag == false) {
-                row.push_back(1);
-            }
         }
-        for(int i=0; i<matrix[0].size(); i++) {
-            bool flag = false;
-            for(int j=0; j<matrix.size(); j++) {
+        for(int i=1; i<n; i++) {
+            for(int j=1; j<m; j++) {
                 if(matrix[j][i] == 0) {
-                    col.push_back(0);
-                    flag = true;
-                    break;
+                    matrix[0][i] = 0;
                 }
             }
-            if(flag == false) {
-                col.push_back(1);
-            }
         }
-        for(int i=0; i<matrix.size(); i++) {
-            for(int j=0; j<matrix[i].size(); j++) {
-                if(row[i] == 0) {
+        for(int i=1; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(matrix[i][0] == 0) {
                     matrix[i][j] = 0;
                 }
             }
         }
-        for(int i=0; i<matrix[0].size(); i++) {
-            for(int j=0; j<matrix.size(); j++) {
-                if(col[i] == 0) {
+        for(int i=0; i<n; i++) {
+            for(int j=1; j<m; j++) {
+                if(matrix[0][i] == 0) {
                     matrix[j][i] = 0;
                 }
             }
         }
+        if(col == 0) {
+            for(int i=0; i<n; i++) {
+                matrix[0][i] = 0;
+            }
+        }
+//         for(int i=0; i<m; i++) {
+//             for(int j=0; j<n; j++) {
+//                 cout<<matrix[i][j]<<" ";
+//             }
+//             cout<<endl;
+//         }
+       
+        
         return;
     }
 };
