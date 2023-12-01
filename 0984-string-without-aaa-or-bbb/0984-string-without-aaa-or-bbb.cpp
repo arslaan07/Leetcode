@@ -1,45 +1,30 @@
 class Solution {
 public:
     string strWithout3a3b(int a, int b) {
-        int n = a+b;
-        string s(n, '0');
-        int i = 2;
-        bool flagA = false;
-        bool flagB = false;
-        while(i >= 0) {
-            int j = i;
-            while(j < s.size()) {
-                if(a < b) {
-                    s[j] = 'a';
-                    flagA = true;
-                    a--;
-                    if(a == 0) break;
-                }
-                else{
-                    s[j] = 'b';
-                    flagB = true;
-                    b--;
-                    if(b == 0) break;
-                }
-                j += 3;
+        string ans = "";
+        while(a && b) {
+            if(a > b) {
+                ans += "aab";
+                a -= 2;
+                b -= 1;
             }
-            if(a == 0) break;
-            if(b == 0) break;
-            i -= 2;
-        }
-        for(int i=0; i<s.size(); i++) {
-            if(flagB == true) {
-                if(s[i] == '0') {
-                    s[i] = 'a';
-                }
+            else if(b > a) {
+                ans += "bba";
+                b -= 2;
+                a -= 1;
             }
             else {
-                if(s[i] == '0') {
-                    s[i] = 'b';
-                }
+                ans += "ab";
+                a -= 1;
+                b -= 1;
             }
         }
-        
-        return s;
+        for(int i=0; i<a; i++) {
+            ans += "a";
+        }
+        for(int i=0; i<b; i++) {
+            ans += "b";
+        }
+        return ans;
     }
 };
