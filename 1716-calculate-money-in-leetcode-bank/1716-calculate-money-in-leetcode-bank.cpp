@@ -5,11 +5,9 @@ public:
         int money = 0;
         int i = weeks + 1;
         money = max(0, 28 * weeks + 7 * (weeks)*(weeks-1) / 2);
-        int remainingTimes = n - weeks * 7;
-        for(int j=1; j<=remainingTimes; j++) {
-            money += i;
-            i++;
-        }
+        int remainingDays = n - weeks * 7;
+        int sum = i+remainingDays-1;
+        money += sum*(sum+1)/2 - weeks*(weeks+1)/2;
         return money;
     }
 };
