@@ -1,17 +1,14 @@
 class Solution {
 public:
     int findSpecialInteger(vector<int>& arr) {
-        int n = arr.size();
-        int cnt = 1;
-        for(int i=0; i<=n-2; i++) {
-            if(arr[i] == arr[i+1]) {
-                cnt++;
-                if(cnt > (n/4)) return arr[i];
-            }
-            else {
-                cnt = 1;
-            }
+        int sz = arr.size();
+        vector<int> candidates = {arr[sz/4], arr[sz/2], arr[sz*3/4]};
+        for (auto cand : candidates) {
+            auto st = lower_bound(arr.begin(), arr.end(), cand);
+            auto ed = upper_bound(arr.begin(), arr.end(), cand);
+            if (4 * (distance(st, ed)) > sz)
+                return cand;
         }
-        return arr[0];
+        return -1;
     }
 };
