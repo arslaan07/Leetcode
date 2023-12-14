@@ -5,17 +5,11 @@ public:
         int n = grid[0].size();
         vector<int> oneRows(m, 0);
         vector<int> oneCols(n, 0);
-        vector<int> zeroRows(m, 0);
-        vector<int> zeroCols(n, 0);
         for(int i=0; i<m; i++) {
             for(int j=0; j<n; j++) {
                 if(grid[i][j] == 1) {
                     oneRows[i]++;
                     oneCols[j]++;
-                }
-                else if(grid[i][j] == 0) {
-                    zeroRows[i]++;
-                    zeroCols[j]++;
                 }
             }
         }
