@@ -19,27 +19,11 @@ public:
                 }
             }
         }
-        // for(auto i : oneRows) {
-        //     cout << i << " ";
-        // }
-        // cout << endl;
-        // for(auto i : oneCols) {
-        //     cout << i << " ";
-        // }
-        // cout << endl;
-        // for(auto i : zeroRows) {
-        //     cout << i << " ";
-        // }
-        // cout << endl;
-        // for(auto i : zeroCols) {
-        //     cout << i << " ";
-        // }
-        // cout << endl;
         vector<vector<int>> ans;
         for(int i=0; i<m; i++) {
             vector<int> temp;
             for(int j=0; j<n; j++) {
-                int diff = oneRows[i] + oneCols[j] - zeroRows[i] - zeroCols[j];
+                int diff = oneRows[i] + oneCols[j] - (n-oneRows[i]) - (m-oneCols[j]);
                 temp.push_back(diff);
             }
             ans.push_back(temp);
