@@ -13,14 +13,12 @@ public:
                 }
             }
         }
-        vector<vector<int>> ans;
+        vector<vector<int>> ans(m, vector<int>(n, 0));
         for(int i=0; i<m; i++) {
-            vector<int> temp;
             for(int j=0; j<n; j++) {
                 int diff = oneRows[i] + oneCols[j] - (n-oneRows[i]) - (m-oneCols[j]);
-                temp.push_back(diff);
+                ans[i][j] = diff;
             }
-            ans.push_back(temp);
         }
         return ans;
     }
