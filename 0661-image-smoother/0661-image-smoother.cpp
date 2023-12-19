@@ -6,43 +6,18 @@ public:
         vector<vector<int>> ans(m, vector<int>(n, 0));
         for(int i=0; i<m; i++) {
             for(int j=0; j<n; j++) {
-                int sum = img[i][j];
-                int cnt = 1;
-                if(i-1 != -1) {
-                    sum += img[i-1][j];
-                    cnt++;
-                }
-                if(i+1 != m) {
-                    sum += img[i+1][j];
-                    cnt++;
-                }
-                if(j-1 != -1) {
-                    sum += img[i][j-1];
-                    cnt++;
-                }
-                if(j+1 != n) {
-                    sum += img[i][j+1];
-                    cnt++;
-                }
-                if(i-1 != -1 && j-1 != -1) {
-                    sum += img[i-1][j-1];
-                    cnt++;
-                }
-                if(i-1 != -1 && j+1 != n) {
-                    sum += img[i-1][j+1];
-                    cnt++;
-                }
-                if(i+1 != m && j-1 != -1) {
-                    sum += img[i+1][j-1];
-                    cnt++;
-                }
-                if(i+1 != m && j+1 != n) {
-                    sum += img[i+1][j+1];
-                    cnt++;
+                int sum = 0;
+                int cnt = 0;
+                for(int x=i-1; x<=i+1; x++) {
+                    for(int y=j-1; y<=j+1; y++) {
+                        if(x >=0 && x <= m-1 && y >= 0 && y <= n-1) {
+                            sum += img[x][y];
+                            cnt++;
+                        }
+                    }
                 }
                 ans[i][j] = sum/cnt;
             }
-            
         }
         return ans;
     }
