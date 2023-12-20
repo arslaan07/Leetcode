@@ -1,8 +1,18 @@
 class Solution {
 public:
     int buyChoco(vector<int>& prices, int money) {
-        nth_element(prices.begin(), prices.begin()+2, prices.end());
-        int sum = prices[0] + prices[1];
+        int fS = INT_MAX;
+        int sS = INT_MAX;
+        for(int i=0; i<prices.size(); i++) {
+            if(prices[i] < fS) {
+                sS = fS;
+                fS = prices[i];
+            }
+            else if(prices[i] < sS) {
+                sS = prices[i];
+            }
+        }
+        int sum = fS + sS;
         if(money >= sum) {
             return money - sum;
         }
