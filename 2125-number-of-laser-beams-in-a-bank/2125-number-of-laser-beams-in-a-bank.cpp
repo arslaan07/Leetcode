@@ -6,13 +6,11 @@ public:
         int ans = 0;
         for(int i = 0; i < n; i++) {
             int currSum = 0;
-            for(int j = 0; j < bank[i].size(); j++) {
-                currSum += bank[i][j] - '0';
+            for(char &ch : bank[i]) {
+                if(ch == '1')
+                currSum++;
             }
-            if(prevSum * currSum) {
-                int mul = currSum * prevSum;
-                ans += mul;
-            }
+            ans += currSum * prevSum;   
             if(currSum != 0)
             prevSum = currSum;
         }
