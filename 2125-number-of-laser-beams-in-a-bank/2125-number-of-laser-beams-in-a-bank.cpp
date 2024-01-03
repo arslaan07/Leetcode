@@ -15,11 +15,8 @@ public:
         int mul = 1;
         int add = 0;
 
-        // Ensure temp has at least two elements before entering the loop
-        if (temp.size() < 2) {
-            return 0; // or handle the case where there are not enough elements
-        }
-
+       
+        if(temp.size() >= 2)
         for(int i = 0; i < temp.size() - 1; i++) {
             mul = temp[i] * temp[i+1];
             add += mul;
