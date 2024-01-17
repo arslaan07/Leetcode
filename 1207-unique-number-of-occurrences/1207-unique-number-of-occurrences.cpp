@@ -5,10 +5,10 @@ public:
         for(int it : arr) {
             mpp[it]++;
         }
-        unordered_map<int, int> freq;
+        unordered_set<int> st;
         for(auto it : mpp) {
-            freq[it.second]++;
-            if(freq[it.second] > 1) return false;
+            if(st.find(it.second) != st.end()) return false;
+            st.insert(it.second);
         }
         return true;
     }
