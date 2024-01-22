@@ -2,20 +2,20 @@ class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
         int n = nums.size();
-        unordered_map<int, int> mpp;
-        for(int num : nums) {
-            mpp[num]++;
-        }
-        int twice;
-        int once;
-        for(int i=1; i<=n; i++) {
-            if(mpp[i] == 2) {
-                twice = i;
-            }
-            else if(mpp[i] == 0) {
-                once = i;
+        int duplicate;
+        int missing;
+        for(int i=0; i<n; i++) {
+            int index = abs(nums[i]) - 1;
+            if(nums[index] < 0) 
+                duplicate = abs(nums[i]);
+            else {
+                nums[index] *= -1;
             }
         }
-        return {twice, once};
+        for(int i=0; i<n; i++) {
+            if(nums[i] > 0)
+                missing = i+1;
+        }
+        return {duplicate, missing};
     }
 };
