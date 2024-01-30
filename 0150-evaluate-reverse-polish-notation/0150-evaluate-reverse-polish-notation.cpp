@@ -1,17 +1,19 @@
 class Solution {
 public:
-    int Operate(int a, int b, string token) {
-        if(token == "+") {
+    unordered_map<string, function<int (int, int)>> mpp = {
+        {"+", [](int a, int b) {
             return a+b;
-        }
-        else if(token == "-") {
+        }},
+        {"-", [](int a, int b) {
             return a-b;
-        }
-        else if(token == "*") {
+        }},
+        {"*", [](int a, int b) {
             return a*b;
-        }
-        return a/b;
-    }
+        }},
+        {"/", [](int a, int b) {
+            return a/b;
+        }}
+    };
     int evalRPN(vector<string>& tokens) {
         stack<int> st;
         for(string &token : tokens) {
@@ -20,7 +22,7 @@ public:
                st.pop();
                int a = st.top();
                st.pop();
-               int result = Operate(a, b, token);
+               int result = mpp[token](a, b);
                st.push(result);
                }
             else {
