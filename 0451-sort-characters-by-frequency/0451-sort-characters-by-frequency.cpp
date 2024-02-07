@@ -2,20 +2,17 @@ class Solution {
 public:
     string frequencySort(string s) {
         int n = s.size();
-        unordered_map<char, int> mpp;
-        for(char ch : s) {
-            mpp[ch]++;
+        vector<pair<int, char>> vec(123,{0, 0});
+        for(int i=0; i<n; i++) {
+            vec[s[i]].second = s[i];
+            vec[s[i]].first++;
         }
-        vector<pair<char, int>> vec(mpp.begin(), mpp.end());
-        sort(vec.begin(), vec.end(), [](pair<char, int> a, pair<char, int> b) {
-            if(a.second > b.second) {
-                return true;
-            }
-            return false;
+        sort(vec.begin(), vec.end(), [](pair<int, char> a, pair<int, char> b) {
+           return a.first > b.first; 
         });
         string ans = "";
-        for(auto p : vec) {
-            ans += string(p.second, p.first);
+        for(const auto& p : vec) {
+            ans += string(p.first, p.second);
         }
         return ans;
     }
