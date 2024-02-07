@@ -6,16 +6,16 @@ public:
         for(char ch : s) {
             mpp[ch]++;
         }
-         vector<pair<char, int>> vec(mpp.begin(), mpp.end());
-
-        // Define a custom comparator to sort based on the second parameter (frequency)
-        sort(vec.begin(), vec.end(), [](const pair<char, int>& a, const pair<char, int>& b) {
-            return a.second > b.second; // Sort in descending order
+        vector<pair<char, int>> vec(mpp.begin(), mpp.end());
+        sort(vec.begin(), vec.end(), [](pair<char, int> a, pair<char, int> b) {
+            if(a.second > b.second) {
+                return true;
+            }
+            return false;
         });
-
         string ans = "";
-        for(auto v : vec) {
-            ans += string(v.second, v.first);
+        for(auto p : vec) {
+            ans += string(p.second, p.first);
         }
         return ans;
     }
