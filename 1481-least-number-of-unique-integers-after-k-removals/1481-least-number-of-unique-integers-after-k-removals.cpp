@@ -6,20 +6,17 @@ public:
         for(auto num : arr) {
             mpp[num]++;         
         }
-        vector<int> temp;
+        vector<int> temp(n+1, 0);
         for(auto it : mpp) {
-            temp.push_back(it.second);
+            temp[it.second] += 1;
         }
-        sort(temp.begin(), temp.end());
-        int cnt = 0;
-        for(auto p : temp) {
-            if(k >= p) {
-                k -= p;
-            }
-            else {
-                cnt++;
-            }
+        int uniqueElements = mpp.size();
+        for(int i=1; i<=n; i++) {
+            if(k <= 0) break;
+            int typesOfElements = min(k/i, temp[i]);
+            k -= typesOfElements*i;
+            uniqueElements -= typesOfElements;
         }
-        return cnt;
+        return uniqueElements;
     }
 };
