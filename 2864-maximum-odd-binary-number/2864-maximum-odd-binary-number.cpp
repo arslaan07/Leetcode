@@ -8,14 +8,7 @@ public:
             if(x == '1') one++;
             else zero++;
         }
-        string ans = "";
-        while(--one) {
-            ans += '1';
-        }
-        while(zero--) {
-            ans += '0';
-        }
-        ans += '1';
+        string ans = string(--one, '1') + string(zero, '0') + '1';
         return ans;
     }
 };
