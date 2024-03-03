@@ -10,25 +10,28 @@
  */
 class Solution {
 public:
+    ListNode* getK(ListNode* head, int k) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        int j = 1;
+        while(fast != NULL && j <= k) {
+            fast = fast->next;
+            j++;
+        }
+        while(fast != NULL) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        return slow;
+    }
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         if(head == NULL) {
             return head;
         }
-        ListNode* slow = head;
-        ListNode* fast = head;
-        int j = 1;
-        while(fast != NULL && j <= n) {
-            fast = fast->next;
-            j++;
-        }
-        if(fast == NULL) {
-            return head->next;
-        }
-        while(fast->next != NULL) {
-            slow = slow->next;
-            fast = fast->next;
-        }
-        slow->next = slow->next->next;
-        return head;
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* k = getK(dummy, n+1);
+        k->next = k->next->next;
+        return dummy->next;
     }
 };
