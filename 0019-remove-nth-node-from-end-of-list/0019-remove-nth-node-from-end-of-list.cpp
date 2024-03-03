@@ -33,8 +33,8 @@ public:
         return slow;
     }
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        if(head == NULL || head->next == NULL) {
-            return NULL;
+        if(head == NULL) {
+            return head;
         }
         int length = getLength(head);
         if(n == length) {
