@@ -1,47 +1,41 @@
 class Solution {
 public:
-    int largestRectangleArea(vector<int>& heights) {
-    stack<pair<int, int>> s;
-	int n = heights.size();
-	vector<int> rightAreas(n, 0);
-	int width = 0;
+    int largestRectangleArea(vector<int>& h) {
+    int n = h.size();
+	stack<pair<int, int>> s;
+	vector<int> r(n, 0);
 	for(int i=n-1; i>=0; i--) {
-		int x = heights[i];
-		while(!s.empty() && s.top().first >= x) {
+		while(!s.empty() && s.top().first >= h[i]) {
 			s.pop();
 		}
 		if(s.empty()) {
-			width = n-i;
+			r[i] = n;
 		}
 		else {
-			width = s.top().second - i;
+			r[i] = s.top().second;
 		}
-		rightAreas[i] = x * width;
-		s.push({x, i});
+		s.push({h[i], i});
 	}
-    while(!s.empty()) {
+	while(!s.empty()) {
 		s.pop();
 	}
-	vector<int> leftAreas(n, 0);
-	for(int i=0; i<=n-1; i++) {
-		int x = heights[i];
-		while(!s.empty() && s.top().first >= x) {
+	vector<int> l(n, 0);
+	for(int i=0; i<n; i++) {
+		while(!s.empty() && s.top().first >= h[i]) {
 			s.pop();
 		}
 		if(s.empty()) {
-			width = i-(-1)-1;
+			l[i] = -1;
 		}
 		else {
-			width = i-s.top().second-1;
+			l[i] = s.top().second;
 		}
-		leftAreas[i] = x * width;
-		s.push({x, i});
-	}
-	for(int i=0; i<n; i++) {
-		rightAreas[i] += leftAreas[i];
+		s.push({h[i], i});
 	}
 	int maxArea = INT_MIN;
-	for(auto area : rightAreas) {
+	for(int i=0; i<n; i++) {
+		int width = r[i]-l[i]-1;
+		int area = h[i]*width;
 		maxArea = max(area, maxArea);
 	}
 	return maxArea;
