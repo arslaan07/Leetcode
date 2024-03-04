@@ -22,6 +22,7 @@ public:
         return prev;
     }
     ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if(left == right) return head;
         ListNode* dummy = new ListNode(0);
         dummy->next = head;
         ListNode* temp = dummy;
