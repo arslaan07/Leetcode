@@ -20,10 +20,10 @@ public:
         ListNode* evenTemp = even;
         while(oddTemp->next != NULL && evenTemp->next != NULL) {
             oddTemp->next = evenTemp->next;
-            if(oddTemp->next != NULL)
+            // if(oddTemp->next != NULL)
             oddTemp = oddTemp->next;
             evenTemp->next = oddTemp->next;
-            if(evenTemp->next != NULL)
+            // if(evenTemp->next != NULL)
             evenTemp = evenTemp->next;
         }
         oddTemp->next = even;
