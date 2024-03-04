@@ -9,7 +9,6 @@ public:
         sc--;
         return power;
     }
-    // 55 71  82    power=54    score=0
     int bagOfTokensScore(vector<int>& tokens, int power) {
         sort(tokens.begin(), tokens.end());
         int n = tokens.size();
@@ -26,7 +25,7 @@ public:
                 power = getPower(tokens, power);
                 if(power >= tokens[i]) {
                 sc++;
-                    maxSc = max(sc, maxSc);
+                maxSc = max(sc, maxSc);
                 power -= tokens[i];
             }
             }
