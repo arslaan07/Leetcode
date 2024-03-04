@@ -38,9 +38,7 @@ public:
 		s.push({x, i});
 	}
 	for(int i=0; i<n; i++) {
-		if(leftAreas[i] > 0) {
-			rightAreas[i] += leftAreas[i];
-		}
+		rightAreas[i] += leftAreas[i];
 	}
 	int maxArea = INT_MIN;
 	for(auto area : rightAreas) {
