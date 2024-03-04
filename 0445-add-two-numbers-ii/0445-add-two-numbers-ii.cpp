@@ -10,49 +10,49 @@
  */
 class Solution {
 public:
-    ListNode* reverse(ListNode* head) {
-        ListNode* prev = NULL;
-        ListNode* curr = head;
-        while(curr != NULL) {
-            ListNode* temp = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = temp;
-        }
-        return prev;
-    }
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        l1 = reverse(l1);
-        l2 = reverse(l2);
+        stack<int> s1;
+        stack<int> s2;
+        vector<int> ans;
+        ListNode* temp = l1;
+        while(temp != NULL) {
+            s1.push(temp->val);
+            temp = temp->next;
+        }
+        temp = l2;
+        while(temp != NULL) {
+            s2.push(temp->val);
+            temp = temp->next;
+        }
         int carry = 0;
+        while(!s1.empty() && !s2.empty()) {
+            int sum = s1.top() + s2.top() + carry;
+            ans.push_back(sum%10);
+            carry = sum/10;
+            s1.pop();
+            s2.pop();   
+        }
+        while(!s1.empty()) {
+            int sum = s1.top() + carry;
+            ans.push_back(sum%10);
+            carry = sum/10;
+            s1.pop(); 
+        }
+        while(!s2.empty()) {
+            int sum = s2.top() + carry;
+            ans.push_back(sum%10);
+            carry = sum/10;
+            s2.pop(); 
+        }
+        if(carry) {
+            ans.push_back(1);
+        }
         ListNode* dummy = new ListNode(0);
-        ListNode* temp = dummy;
-        while(l1 != NULL && l2 != NULL) {
-            int sum = l1->val + l2->val + carry;
-            temp->next = new ListNode(sum%10);
-            carry = sum/10;
-            l1 = l1->next;
-            l2 = l2->next;
+        temp = dummy;
+        for(int i=ans.size()-1; i>=0; i--) {
+            temp->next = new ListNode(ans[i]);
             temp = temp->next;
         }
-        while(l1 != NULL) {
-            int sum = l1->val + carry;
-            temp->next = new ListNode(sum%10);
-            carry = sum/10;
-            l1 = l1->next;
-            temp = temp->next;
-        }
-        while(l2 != NULL) {
-            int sum = l2->val + carry;
-            temp->next = new ListNode(sum%10);
-            carry = sum/10;
-            l2 = l2->next;
-            temp = temp->next;
-        }
-        if(carry != 0) {
-            temp->next = new ListNode(1);
-        }
-        dummy = reverse(dummy->next);
-        return dummy;
+        return dummy->next;
     }
 };
