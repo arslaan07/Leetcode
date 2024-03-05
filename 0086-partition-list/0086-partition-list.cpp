@@ -28,6 +28,11 @@ public:
         }
         temp2->next = NULL;
         temp1->next = dummy2->next;
-        return dummy1->next;
+        ListNode* result = dummy1->next;
+
+        // Free the memory allocated for the dummy nodes
+        delete dummy1;
+        delete dummy2;
+        return result;
     }
 };
