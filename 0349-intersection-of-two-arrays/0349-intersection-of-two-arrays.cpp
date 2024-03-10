@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        unordered_set<int> st;
+        set<int> st;
         vector<int> ans;
         
         for(auto x : nums1) {
