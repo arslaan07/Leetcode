@@ -7,13 +7,8 @@ public:
         int cnt = 0;
         for(auto num : nums) {
             sum += num;
-            if(sum == goal) {
-                cnt++;
-                if(mpp.find(sum-goal) != mpp.end()) {
-                    cnt += mpp[sum-goal];
-                }
-            }
-            else if(sum > goal) {
+            if(sum >= goal) {
+                if(sum == goal) cnt++;
                 if(mpp.find(sum-goal) != mpp.end()) {
                     cnt += mpp[sum-goal];
                 }
