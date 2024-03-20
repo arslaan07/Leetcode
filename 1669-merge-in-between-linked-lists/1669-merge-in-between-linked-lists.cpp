@@ -20,7 +20,7 @@ public:
     }
     ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
         ListNode* nodeBeforeA = getNode(list1, a-1);
-        ListNode* nodeAfterB = getNode(list1, b+1);
+        ListNode* nodeAfterB = getNode(nodeBeforeA, (b+1)-(a-1));
         nodeBeforeA->next = list2;
         while(list2->next != NULL) {
             list2 = list2->next;
