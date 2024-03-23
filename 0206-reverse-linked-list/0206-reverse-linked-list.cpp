@@ -10,15 +10,18 @@
  */
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        ListNode* prev = NULL;
-        ListNode* curr = head;
-        while(curr != NULL) {
-            ListNode* temp = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = temp;
+    ListNode* helper(ListNode* prev, ListNode* curr) {
+        // base case
+        if(curr == NULL) {
+            return prev;
         }
-        return prev;
+        // recursive case
+        ListNode* temp = curr->next;
+        curr->next = prev;
+        return helper(curr, temp);
+    }
+    ListNode* reverseList(ListNode* head) {
+        ListNode* revHead = helper(NULL, head);
+        return revHead;
     }
 };
