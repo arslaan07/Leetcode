@@ -10,23 +10,28 @@
  */
 class Solution {
 public:
-    ListNode* reorderLL(ListNode* head) {
-	if(head == NULL || head->next == NULL || head->next->next == NULL) {
-		return head;
-	}
-	ListNode* newHead = head->next;
-	ListNode* temp = head;
-	while(temp->next->next != NULL) {
-		temp = temp->next;
-	}
-	head->next = temp->next;
-	temp->next = NULL;
-	ListNode* headFromMyFriend = reorderLL(newHead);
-	head->next->next = headFromMyFriend;
-	return head;
-}
     void reorderList(ListNode* head) {
-        head = reorderLL(head);
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while(fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        stack<ListNode*> st;
+        ListNode* temp = slow->next;
+        slow->next = NULL;
+        while(temp != NULL) {
+            st.push(temp);
+            temp = temp->next;
+        }
+        ListNode* curr = head;
+        while(!st.empty()) {
+            temp = curr->next;
+            curr->next = st.top();
+            st.pop();
+            curr->next->next = temp;
+            curr = temp;
+        }
         return;
     }
 };
