@@ -10,7 +10,7 @@ public:
         while(j < n) {
             while(i < n) {
                 if(mpp.find(nums[i]) == mpp.end()) {
-                    mpp[nums[i]]++;
+                    mpp[nums[i]] = 1;
                 }
                 else if(mpp[nums[i]] < k) {
                     mpp[nums[i]]++;
