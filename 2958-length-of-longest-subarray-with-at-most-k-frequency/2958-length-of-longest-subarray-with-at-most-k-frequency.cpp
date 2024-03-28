@@ -22,6 +22,7 @@ public:
                 maxLen = max(maxLen, len);
                 i++;
             }
+            if(i == n) break;
             mpp[nums[j]]--;
             j++;
         }
