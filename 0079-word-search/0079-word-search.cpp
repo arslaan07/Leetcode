@@ -4,7 +4,7 @@ public:
         // base case
         if(k == word.size())
             return true;
-        if(i<0 || j<0 || i==m || j==n || board[i][j]!=word[k])
+        if(i<0 || j<0 || i==m || j==n || board[i][j]!=word[k] || board[i][j] == '#')
             return false;
         
         // recursive case
