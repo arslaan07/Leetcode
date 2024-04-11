@@ -1,56 +1,42 @@
+#include <string>
+
 class Solution {
 public:
-    string removeKdigits(string num, int k) {
-        // number of operation greater than length we return an empty string
-        if(num.length() <= k)   
-            return "0";
+    std::string removeKdigits(std::string num, int k) {
+        int n = num.length();
         
-        // k is 0 , no need of removing /  preforming any operation
-        if(k == 0)
-            return num;
+        // Edge case: if k is equal to the length of num, return "0"
+        if (k == n) return "0";
         
-        string res = "";// result string
-        stack <char> s; // char stack
-        
-        s.push(num[0]); // pushing first character into stack
-        
-        for(int i = 1; i<num.length(); ++i)
-        {
-            while(k > 0 && !s.empty() && num[i] < s.top())
-            {
-                // if k greater than 0 and our stack is not empty and the upcoming digit,
-                // is less than the current top than we will pop the stack top
-                --k;
-                s.pop();
+        int i = 0;
+        while (k > 0 && i < num.length() - 1) {
+            // If the current digit is greater than the next digit, remove it
+            if (num[i] > num[i + 1]) {
+                num.erase(i, 1);
+                k--;
+                // Adjust i to prevent out of range error
+                if (i > 0) i--;
+            } else {
+                i++;
             }
-            
-            s.push(num[i]);
-            
-            // popping preceding zeroes
-            if(s.size() == 1 && num[i] == '0')
-                s.pop();
         }
         
-        while(k && !s.empty())
-        {
-            // for cases like "456" where every num[i] > num.top()
-            --k;
-            s.pop();
+        // If there are remaining removals, remove the last k digits
+        num.erase(num.length() - k, k);
+        
+        // Remove leading zeroes
+        int j = 0;
+        while (j < num.length() && num[j] == '0') {
+            j++;
         }
         
-        while(!s.empty())
-        {
-            res.push_back(s.top()); // pushing stack top to string
-            s.pop(); // pop the top element
-        }
+        num = num.substr(j);
         
-        reverse(res.begin(),res.end()); // reverse the string 
-        
-        if(res.length() == 0)
+        // If result is empty, return "0"
+        if (num == "") {
             return "0";
+        }
         
-        return res;
-        
-        
+        return num;
     }
 };
