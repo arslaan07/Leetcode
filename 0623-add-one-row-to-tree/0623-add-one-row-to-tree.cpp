@@ -14,12 +14,13 @@ public:
     void helper(TreeNode*& root, int val, int depth, int curDep) {
         // base case
         if(root == NULL) return;
+        
+        // recursive case
+        
         if(depth == 1) {
             TreeNode* cur = new TreeNode(val);
             cur->left = root;
             root = cur;
-            cout << cur->val << endl;
-            cout << root->val << endl;
             return;
         }
         if(curDep == depth - 1) {
@@ -31,7 +32,6 @@ public:
             root->right->right = prevRight;
             return;
         }
-        // recursive case
         helper(root->left, val, depth, curDep+1);
         helper(root->right, val, depth, curDep+1);
     }
