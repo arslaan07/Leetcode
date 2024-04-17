@@ -16,18 +16,16 @@ public:
         // base case
         if(root == NULL) return;
         if(root->left == NULL && root->right == NULL) {
-            s += char(root->val + 'a');
-            reverse(s.begin(), s.end());
+            s = char(root->val + 'a') + s;
             if(ans > s) {
                 ans = s;
             }
-            reverse(s.begin(), s.end());
             return;
         }
         
         // recursive case
-        helper(root->left, s+char(root->val + 'a'), ans);
-        helper(root->right, s+char(root->val + 'a'), ans);
+        helper(root->left, char(root->val + 'a') + s, ans);
+        helper(root->right, char(root->val + 'a') + s, ans);
     }
     string smallestFromLeaf(TreeNode* root) {
     
