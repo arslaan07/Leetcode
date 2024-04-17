@@ -9,29 +9,34 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
 class Solution {
 public:
-    
-    void helper(TreeNode* root, string s, string& ans) {
-        // base case
-        if(root == NULL) return;
-        if(root->left == NULL && root->right == NULL) {
-            s = char(root->val + 'a') + s;
-            if(ans > s) {
-                ans = s;
-            }
-            return;
-        }
-        
-        // recursive case
-        helper(root->left, char(root->val + 'a') + s, ans);
-        helper(root->right, char(root->val + 'a') + s, ans);
-    }
     string smallestFromLeaf(TreeNode* root) {
-    
-        string s = "";
-        string ans(25, 'z');
-        helper(root, s, ans);
-        return ans;
+        string smallestString = "";
+        queue<pair<TreeNode*, string>> q;
+        
+        q.push({root, string(1, root->val+'a')});
+        
+        while(!q.empty()) {
+            auto[node, curStr] = q.front();
+            q.pop();
+            
+            if(node->left == NULL && node->right == NULL) {
+                if(smallestString == "") {
+                    smallestString = curStr;
+                }
+                else {
+                    smallestString = min(smallestString, curStr);
+                }
+            }
+            if(node->left != NULL) {
+                q.push({node->left, char(node->left->val+'a') + curStr});
+            }
+            if(node->right != NULL) {
+                q.push({node->right, char(node->right->val+'a') + curStr});
+            }
+    }
+        return smallestString;
     }
 };
