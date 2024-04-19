@@ -12,6 +12,7 @@ public:
         dfs(grid, i, j-1, m, n);
         dfs(grid, i, j+1, m, n);
         
+        return;   
     }
     int numIslands(vector<vector<char>>& grid) {
         int m = grid.size();
