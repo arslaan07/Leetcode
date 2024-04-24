@@ -22,6 +22,20 @@ public:
         }
         return dp[n];
     }
+    int bottomUpSpaceEfficient(int n) {
+        
+        int dp0 = 0;
+        int dp1 = 1;
+        int dp2 = 1;
+        int dpn;
+        for(int i=3; i<=n; i++) {
+            dpn = dp2 + dp1 + dp0;
+            dp0 = dp1;
+            dp1 = dp2;
+            dp2 = dpn;
+        }
+        return dpn;
+    }
     int tribonacci(int n) {
 //         // base case
         if(n <= 1) return n;
@@ -33,6 +47,8 @@ public:
         // vector<int> dp(n+1, -1);
         // return topDownTrribonacci(n, dp);
         
-        return bottomUpTrribonacci(n);
+        // return bottomUpTrribonacci(n);
+        
+        return bottomUpSpaceEfficient(n);
     }
 };
