@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int solve(string& s,int index,int prev,int &k, int n, vector<vector<int>>& dp){
+    int solve(string& s,int index,int prev,int k, int n, vector<vector<int>>& dp){
         if(index>=n) return 0;
         
         if(dp[index][prev]!=-1) return dp[index][prev];
