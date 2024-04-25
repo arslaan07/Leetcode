@@ -1,22 +1,32 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 class Solution {
 public:
-    int solve(string& s,int index,int prev,int k, int n, vector<vector<int>>& dp){
-        if(index == n) return dp[index][prev] = 0;
-        
-        if(dp[index][prev]!=-1) return dp[index][prev];
-        
-        int inc=0,notinc=0;
-        if(prev==0 || abs(s[index]-prev)<=k){
-            inc=1+solve(s,index+1,s[index],k, n, dp);
-        }
-        notinc=solve(s,index+1,prev,k, n, dp);
-        
-        return dp[index][prev]=max(inc,notinc);
-    }
-    
     int longestIdealString(string s, int k) {
         int n = s.size();
-        vector<vector<int>>dp (n+1,vector<int>(123,-1));
-        return solve(s,0,0,k,n,dp);
+        // Create a DP table
+        vector<vector<int>> dp(n + 1, vector<int>(150, -1));
+
+        // Base case: if the index is greater than or equal to the string size, return 0
+        for (int index = n; index >= 0; index--) {
+            for (int prev = 0; prev < 150; prev++) {
+                if (index == n) {
+                    dp[index][prev] = 0;
+                } else {
+                    int inc = 0, notinc = 0;
+                    if (prev == 0 || abs(s[index] - prev) <= k) {
+                        inc = 1 + dp[index + 1][s[index]];
+                    }
+                    notinc = dp[index + 1][prev];
+                    dp[index][prev] = max(inc, notinc);
+                }
+            }
+        }
+
+        // Return the result
+        return dp[0][0];
     }
 };
