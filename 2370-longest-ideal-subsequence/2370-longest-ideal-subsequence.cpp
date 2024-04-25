@@ -21,14 +21,11 @@ public:
         }
         for(int i=n-1; i>=0; i--) {
             for(int prev=0; prev<123; prev++) {
-                int take = 0;
-                int notTake = 0;
                 if(prev==0 || abs(s[i]-prev)<=k){
-                    take = 1+dp[i+1][s[i]];
+                    dp[i][prev] = 1+dp[i+1][s[i]];
                    
                 }
-                    notTake = dp[i+1][prev];
-                dp[i][prev] = max(take, notTake);
+                    dp[i][prev] = max(dp[i][prev], dp[i+1][prev]);
             }
         }
         return dp[0][0];
