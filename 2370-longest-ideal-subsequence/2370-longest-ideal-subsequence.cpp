@@ -8,7 +8,7 @@ public:
     int longestIdealString(string s, int k) {
         int n = s.size();
         // Create a DP table
-        vector<vector<int>> dp(n + 1, vector<int>(150, -1));
+        vector<vector<int>> dp(n + 1, vector<int>(150));
 
         // Base case: if the index is greater than or equal to the string size, return 0
         for (int index = n; index >= 0; index--) {
