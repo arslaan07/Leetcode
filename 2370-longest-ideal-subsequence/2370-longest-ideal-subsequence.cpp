@@ -16,7 +16,7 @@ public:
     
     int longestIdealString(string s, int k) {
         int n = s.size();
-        vector<vector<int>>dp (n+1,vector<int>(150,-1));
+        vector<vector<int>>dp (n+1,vector<int>(123,-1));
         return solve(s,0,0,k,n,dp);
     }
 };
