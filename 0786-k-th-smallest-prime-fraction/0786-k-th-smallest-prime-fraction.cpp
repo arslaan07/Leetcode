@@ -1,27 +1,14 @@
 class Solution {
 public:
     vector<int> kthSmallestPrimeFraction(vector<int>& arr, int k) {
-        // Create a priority queue to store pairs of fractions
+        int n = arr.size();
         priority_queue<pair<double, pair<int, int>>> pq;
-
-        // Push the fractions formed by dividing each element by
-        // the largest element into the priority queue
-        for (int i = 0; i < arr.size(); i++)
-            pq.push({-1.0 * arr[i] / arr.back(), {i, arr.size() - 1}});
-        
-        // Iteratively remove the top element (smallest fraction) 
-        // and replace it with the next smallest fraction
-        while (--k > 0) {
-            pair<int, int> cur = pq.top().second;
-            pq.pop();
-            cur.second--;
-            pq.push({-1.0 * arr[cur.first] / arr[cur.second], 
-                    {cur.first, cur.second}});
+        for(int i=0; i<n; i++) {
+            for(int j=i+1; j<n; j++) {
+                pq.push({arr[i]/(arr[j]*1.0), {arr[i], arr[j]}});
+                if(pq.size() > k) pq.pop();
+            }
         }
-        
-        // Retrieve the kth smallest fraction from 
-        // the top of the priority queue
-        pair<int, int> result = pq.top().second;
-        return {arr[result.first], arr[result.second]};
+        return {pq.top().second.first, pq.top().second.second};
     }
 };
