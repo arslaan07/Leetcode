@@ -19,8 +19,7 @@ public:
         // recursive case
         root->left = removeLeafNodes(root->left, target);
         root->right = removeLeafNodes(root->right, target);
-        if(!root->left && !root->right && root->val == target) {
-            
+        if(!root->left && !root->right && root->val == target) {    
             return NULL;
         }
         return root;
